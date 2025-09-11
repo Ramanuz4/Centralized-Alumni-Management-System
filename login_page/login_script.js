@@ -113,7 +113,8 @@ function handleLogin(event) {
             if (remember) localStorage.setItem('userEmail', email);
             sessionStorage.setItem('isLoggedIn', 'true');
             sessionStorage.setItem('userEmail', email);
-            setTimeout(() => window.location.href = 'index.html', 1500);
+            // FIXED: Changed from 'index.html' to '../index.html' to go back to parent directory
+            setTimeout(() => window.location.href = '../index.html', 1500);
         } else {
             showMessage(data.detail || 'Invalid email or password.', 'error');
             hideLoadingState(form);
