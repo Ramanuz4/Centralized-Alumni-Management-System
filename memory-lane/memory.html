@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Lane - Alumni Connect</title>
+    <link rel="stylesheet" href="memory_styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="memory-lane-container">
+        <!-- Header -->
+        <header class="memory-header">
+            <div class="header-content">
+                <h1><i class="fas fa-camera-retro"></i> Memory Lane</h1>
+                <a href="/index.html" class="nav-link-memorylane">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <div class="header-controls">
+                    <select id="batchFilter" class="batch-selector">
+                        <option value="all">All Batches</option>
+                        <option value="2024">Batch 2024</option>
+                        <option value="2023">Batch 2023</option>
+                        <option value="2022">Batch 2022</option>
+                        <option value="2021">Batch 2021</option>
+                    </select>
+                    <button id="uploadBtn" class="upload-btn">
+                        <i class="fas fa-plus"></i> Upload Memory
+                    </button>
+                    <div class="user-profile">
+                        <span id="userRole">Admin</span>
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Achievement Grid -->
+        <div class="achievements-container">
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Achievement items will be dynamically generated -->
+            </div>
+        </div>
+
+        <!-- Upload Modal -->
+        <div id="uploadModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-upload"></i> Upload New Memory</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadForm">
+                        <div class="form-group">
+                            <label for="memoryTitle">Memory Title</label>
+                            <input type="text" id="memoryTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="memoryDescription">Description</label>
+                            <textarea id="memoryDescription" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group" id="batchGroup">
+                            <label for="memoryBatch">Batch (Admin Only)</label>
+                            <select id="memoryBatch">
+                                <option value="2024">Batch 2024</option>
+                                <option value="2023">Batch 2023</option>
+                                <option value="2022">Batch 2022</option>
+                                <option value="2021">Batch 2021</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="memoryFile">Upload File</label>
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag and drop files here or click to browse</p>
+                                <input type="file" id="memoryFile" accept="image/*,video/*" multiple hidden>
+                            </div>
+                            <div id="filePreview" class="file-preview"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-upload">
+                                <i class="fas fa-save"></i> Save Memory
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Detail Modal -->
+        <div id="memoryModal" class="modal">
+            <div class="modal-content memory-detail-modal">
+                <div class="modal-header">
+                    <h2 id="memoryDetailTitle"></h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="memoryDetailContent">
+                        <!-- Memory content will be loaded here -->
+                    </div>
+                    <div class="memory-info">
+                        <p id="memoryDetailDescription"></p>
+                        <div class="memory-meta">
+                            <span id="memoryDetailBatch"></span>
+                            <span id="memoryDetailDate"></span>
+                            <span id="memoryDetailUploader"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="loading-spinner"></div>
+            <p>Loading memories...</p>
+        </div>
+    </div>
+
+    <script src="memory_script.js"></script>
+</body>
+</html>

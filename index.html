@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h2><i class="fas fa-graduation-cap"></i> AlumniConnect</h2>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="nav desktop-nav">
+                <a href="#dashboard" class="nav-link active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#alumni" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Alumni</span>
+                </a>
+                <a href="#events" class="nav-link">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Events</span>
+                </a>
+                <a href="#reports" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="/memory-lane/memory.html" class="nav-link-memorylane">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Memory Lane</span>
+                </a>
+            </nav>
+            
+            <!-- User Profile -->
+            <div class="user-profile">
+                <i class="fa-solid fa-user profile-img"></i>
+                <span class="user-name">Admin</span>
+                <div class="user-dropdown">
+                    <button class="dropdown-btn" aria-label="User menu">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                        <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="login_page/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="nav mobile-nav" id="mobileNav">
+            <a href="#dashboard" class="nav-link active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#alumni" class="nav-link">
+                <i class="fas fa-users"></i>
+                <span>Alumni</span>
+            </a>
+            <a href="#events" class="nav-link">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Events</span>
+            </a>
+            <a href="#reports" class="nav-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h1 class="page-title animate-on-scroll">Dashboard</h1>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card animate-on-scroll" data-delay="0">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>2,456</h3>
+                            <p>Total Alumni</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card animate-on-scroll" data-delay="100">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>18</h3>
+                            <p>Upcoming Events</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card animate-on-scroll" data-delay="200">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>89</h3>
+                            <p>Job Opportunities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card animate-on-scroll" data-delay="300">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>156</h3>
+                            <p>Mentorship Connections</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions animate-on-scroll">
+                    <h2>Quick Actions</h2>
+                    <div class="actions-grid">
+                        <button class="action-btn animate-on-scroll" onclick="openModal('addAlumniModal')" data-delay="0">
+                            <i class="fas fa-user-plus"></i>
+                            Add Alumni
+                        </button>
+                        <button class="action-btn animate-on-scroll" onclick="openModal('createEventModal')" data-delay="100">
+                            <i class="fas fa-plus-circle"></i>
+                            Create Event
+                        </button>
+                        <button class="action-btn animate-on-scroll" onclick="sendBulkEmail()" data-delay="200">
+                            <i class="fas fa-envelope"></i>
+                            Send Newsletter
+                        </button>
+                        <button class="action-btn animate-on-scroll" onclick="generateReport()" data-delay="300">
+                            <i class="fas fa-chart-bar"></i>
+                            Generate Report
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity animate-on-scroll">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item animate-on-scroll" data-delay="0">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>John Doe</strong> updated his profile information</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item animate-on-scroll" data-delay="100">
+                            <div class="activity-icon">
+                                <i class="fas fa-calendar-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>New event <strong>"Tech Alumni Meetup"</strong> created</p>
+                                <span class="activity-time">4 hours ago</span>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item animate-on-scroll" data-delay="200">
+                            <div class="activity-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p><strong>25 new alumni</strong> registered from batch 2024</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alumni Section -->
+        <section id="alumni" class="section">
+            <div class="container">
+                <h1 class="page-title animate-on-scroll">Alumni Directory</h1>
+                
+                <!-- Search and Filters -->
+                <div class="search-filters animate-on-scroll">
+                    <div class="search-section">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search alumni..." id="alumniSearch">
+                            <button class="clear-search" id="clearSearch" style="display: none;" aria-label="Clear search">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="batchFilter">Batch</label>
+                            <select id="batchFilter">
+                                <option value="">All Batches</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="departmentFilter">Department</label>
+                            <select id="departmentFilter">
+                                <option value="">All Departments</option>
+                                <option value="CSE">Computer Science</option>
+                                <option value="ECE">Electronics</option>
+                                <option value="ME">Mechanical</option>
+                                <option value="CE">Civil</option>
+                                <option value="EE">Electrical</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-actions">
+                            <button class="filter-btn" id="applyFilters">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                            <button class="reset-btn" id="resetFilters">
+                                <i class="fas fa-undo"></i>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Header -->
+                <div class="results-header animate-on-scroll">
+                    <span class="results-count" id="resultsCount">Showing all alumni</span>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" aria-label="Grid view">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" aria-label="List view">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Alumni Grid -->
+                <div class="alumni-grid" id="alumniGrid">
+                    <!-- Alumni cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="section">
+            <div class="container">
+                <h1 class="page-title animate-on-scroll">Events & Activities</h1>
+                
+                <div class="events-header animate-on-scroll">
+                    <div class="event-filters">
+                        <select id="eventTypeFilter">
+                            <option value="">All Events</option>
+                            <option value="networking">Networking</option>
+                            <option value="social">Social</option>
+                            <option value="professional">Professional</option>
+                            <option value="reunion">Reunion</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="openModal('createEventModal')">
+                        <i class="fas fa-plus"></i> 
+                        <span>Create Event</span>
+                    </button>
+                </div>
+
+                <!-- Events Timeline -->
+                <div class="events-timeline">
+                    <div class="event-card animate-on-scroll" data-delay="0">
+                        <div class="event-date">
+                            <span class="day">25</span>
+                            <span class="month">DEC</span>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <h3>Annual Alumni Meet 2024</h3>
+                                <span class="event-type networking">Networking</span>
+                            </div>
+                            <div class="event-details">
+                                <p><i class="fas fa-map-marker-alt"></i> Main Auditorium</p>
+                                <p><i class="fas fa-clock"></i> 6:00 PM - 9:00 PM</p>
+                                <p><i class="fas fa-users"></i> 120 Registered</p>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-outline">View Details</button>
+                                <button class="btn-primary">Register</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card animate-on-scroll" data-delay="100">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">JAN</span>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-header">
+                                <h3>Tech Industry Panel Discussion</h3>
+                                <span class="event-type professional">Professional</span>
+                            </div>
+                            <div class="event-details">
+                                <p><i class="fas fa-video"></i> Online Event</p>
+                                <p><i class="fas fa-clock"></i> 4:00 PM - 5:30 PM</p>
+                                <p><i class="fas fa-users"></i> 85 Registered</p>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn-outline">View Details</button>
+                                <button class="btn-primary">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="section">
+            <div class="container">
+                <h1 class="page-title animate-on-scroll">Reports & Analytics</h1>
+                
+                <!-- Chart Container -->
+                <div class="charts-grid">
+                    <div class="chart-card animate-on-scroll" data-delay="0">
+                        <div class="chart-header">
+                            <h3>Alumni Registration Trends</h3>
+                            <div class="chart-controls">
+                                <select id="chartPeriod">
+                                    <option value="6months">Last 6 Months</option>
+                                    <option value="1year">Last Year</option>
+                                    <option value="2years">Last 2 Years</option>
+                                </select>
+                            </div>
+                        </div>
+                        <canvas id="registrationChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-card animate-on-scroll" data-delay="100">
+                        <div class="chart-header">
+                            <h3>Department-wise Distribution</h3>
+                        </div>
+                        <canvas id="departmentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="export-options animate-on-scroll">
+                    <h3>Export Data</h3>
+                    <div class="export-buttons">
+                        <button class="export-btn animate-on-scroll" data-delay="0">
+                            <i class="fas fa-file-csv"></i> Export CSV
+                        </button>
+                        <button class="export-btn animate-on-scroll" data-delay="100">
+                            <i class="fas fa-file-pdf"></i> Export PDF
+                        </button>
+                        <button class="export-btn animate-on-scroll" data-delay="200">
+                            <i class="fas fa-file-excel"></i> Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <!-- Add Alumni Modal -->
+    <div id="addAlumniModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addAlumniModal')">&times;</span>
+            <h2>Add New Alumni</h2>
+            <form id="addAlumniForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Batch</label>
+                        <select name="batch" required>
+                            <option value="">Select Batch</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Department</label>
+                        <select name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="CSE">Computer Science</option>
+                            <option value="ECE">Electronics</option>
+                            <option value="ME">Mechanical</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Current Company</label>
+                        <input type="text" name="company">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('addAlumniModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Alumni</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Event Modal -->
+    <div id="createEventModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createEventModal')">&times;</span>
+            <h2>Create New Event</h2>
+            <form id="createEventForm">
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Event Title</label>
+                        <input type="text" name="title" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" name="time" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Location</label>
+                        <input type="text" name="location" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('createEventModal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

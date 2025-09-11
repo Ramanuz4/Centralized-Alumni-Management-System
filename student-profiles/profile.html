@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile_styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="brand">
+            <i class="fas fa-graduation-cap"></i>
+            AlumniConnect
+        </div>
+        <div class="actions">
+            <button class="btn-save" onclick="saveProfile()">
+                <i class="fas fa-check"></i>
+                Save Profile
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="layout">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <img src="https://via.placeholder.com/100/42326E/ffffff?text=JD" alt="Profile" id="profilePicture">
+                    <button class="avatar-edit" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+                <div class="status-dot"></div>
+            </div>
+            
+            <div class="profile-info">
+                <h1 id="profileName" contenteditable="true" placeholder="Your Full Name">Ramanuz Kashyap</h1>
+                <div class="quick-info">
+                    <span class="info-badge">
+                        <i class="fas fa-calendar"></i>
+                        Class of <span id="batchDisplay">2024</span>
+                    </span>
+                    <span class="info-badge" id="statusBadge">
+                        <i class="fas fa-briefcase"></i>
+                        Employed
+                    </span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button class="btn-secondary" onclick="shareProfile()">
+                    <i class="fas fa-share-alt"></i>
+                    Share
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-download"></i>
+                    Export
+                </button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Left Panel -->
+            <div class="panel">
+                <div class="section">
+                    <div class="section-title">
+                        <i class="fas fa-user"></i>
+                        Personal Info
+                    </div>
+                    <div class="form-group">
+                        <label>Job Status</label>
+                        <select id="jobStatus">
+                            <option value="employed">💼 Employed</option>
+                            <option value="unemployed">🔍 Looking for opportunities</option>
+                            <option value="student">📚 Student</option>
+                            <option value="freelancer">💻 Freelancer</option>
+                            <option value="entrepreneur">🚀 Entrepreneur</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Batch Year</label>
+                        <input type="number" id="batchYear" value="2024" min="1950" max="2030">
+                    </div>
+                    <div class="form-group">
+                        <label>Current Position</label>
+                        <input type="text" id="jobTitle" placeholder="e.g. Software Engineer" value="Software Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="location" placeholder="e.g. San Francisco, CA" value="San Francisco, CA">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">
+                        <i class="fas fa-link"></i>
+                        Social Links
+                    </div>
+                    <div class="social-grid">
+                        <div class="social-item linkedin">
+                            <i class="fab fa-linkedin"></i>
+                            <input type="url" id="linkedin" placeholder="LinkedIn URL" value="https://linkedin.com/in/xyz">
+                        </div>
+                        <div class="social-item github">
+                            <i class="fab fa-github"></i>
+                            <input type="url" id="github" placeholder="GitHub URL" value="https://github.com/xyz">
+                        </div>
+                        <div class="social-item twitter">
+                            <i class="fab fa-twitter"></i>
+                            <input type="url" id="twitter" placeholder="Twitter URL" value="https://twitter.com/xyz">
+                        </div>
+                        <div class="social-item instagram">
+                            <i class="fab fa-instagram"></i>
+                            <input type="url" id="instagram" placeholder="Instagram URL" value="https://instagram.com/xyz">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="panel">
+                <div class="section">
+                    <div class="section-title">
+                        <i class="fas fa-quote-left"></i>
+                        About Me
+                    </div>
+                    <div class="bio-area">
+                        <textarea id="bio" placeholder="Tell your story... What makes you unique? What are your passions and goals?" maxlength="600">Passionate software developer with 3+ years of experience in building innovative web applications. Alumni of Computer Science, Class of 2024. 
+
+I love solving complex problems and creating user-friendly solutions. Always excited to connect with fellow alumni and explore new opportunities in tech!</textarea>
+                        <div class="bio-counter">
+                            <span id="bioCount">234</span>/600 characters
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-briefcase"></i>
+                            Experience
+                        </div>
+                        <button class="btn-add" onclick="addExperience()">
+                            <i class="fas fa-plus"></i>
+                            Add
+                        </button>
+                    </div>
+                    <div class="timeline" id="experienceList">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4 contenteditable="true">Software Engineer</h4>
+                                <p contenteditable="true">TechCorp Inc.</p>
+                                <span contenteditable="true">Jan 2024 - Present</span>
+                                <div class="description" contenteditable="true">
+                                    Building scalable web applications using React and Node.js. Led the migration to microservices architecture, improving system performance by 40%.
+                                </div>
+                                <button class="btn-remove" onclick="removeItem(this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Education
+                        </div>
+                        <button class="btn-add" onclick="addEducation()">
+                            <i class="fas fa-plus"></i>
+                            Add
+                        </button>
+                    </div>
+                    <div class="timeline" id="educationList">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h4 contenteditable="true">Bachelor of Computer Science</h4>
+                                <p contenteditable="true">University Name</p>
+                                <span contenteditable="true">2020 - 2024</span>
+                                <div class="description" contenteditable="true">
+                                    Graduated with honors. Specialized in software engineering and machine learning. Active member of the coding club.
+                                </div>
+                                <button class="btn-remove" onclick="removeItem(this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <i class="fas fa-code"></i>
+                            Skills
+                        </div>
+                        <button class="btn-add" onclick="addSkill()">
+                            <i class="fas fa-plus"></i>
+                            Add
+                        </button>
+                    </div>
+                    <div class="skills-cloud" id="skillsContainer">
+                        <span class="skill-tag" onclick="removeSkill(this)">JavaScript</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">React</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">Node.js</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">Python</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">CSS</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">MongoDB</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">Git</span>
+                        <span class="skill-tag" onclick="removeSkill(this)">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <span id="toastMessage">Profile saved successfully!</span>
+        <button class="toast-close" onclick="hideToast()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <script src="profile_script.js"></script>
+</body>
+</html>
